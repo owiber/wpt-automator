@@ -53,6 +53,8 @@
     
     $sql = 'insert into TestResults (TestID,Location,Label,Mode,Browser,Date,URL,DocTime,DocRequests,DocBytes,FullyLoaded,FullRequests,FullBytes,CachedDocTime,CachedDocRequests,CachedDocBytes,CachedFullyLoaded,CachedFullRequests,CachedFullBytes) values (' . implode(',', $data) . ');';
     print $sql;
-    mysql_query($sql);
+    if (sqlNumWrap($firstView->fullyLoaded) > 0) {
+        mysql_query($sql);
+    }
     mysql_close($db);
 ?>
